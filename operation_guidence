@@ -1,0 +1,18 @@
+// the process for editing files locally
+// and push them to the remote server side
+
+
+first edit the files
+
+then use the command "git add XXXX"  to add the file to tmp area
+
+then use "git commit -m "balabala" " to commit the change to local master
+
+and at last use command "git push origin master" to push your change to remote server side
+
+// one tip for you:
+to avoid the conflict use "git fetch origiin" and "git merge origin/master" before every editing operations (or use "git pull origin master" instead)
+
+good luck!
+
+last tip :  use  "git status" to see the status of your git repo and remote repo any time, at ease
