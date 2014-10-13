@@ -1,0 +1,39 @@
+#!/bin/bash
+
+ADD=$(pwd)
+count=0;
+DIR=$(pwd)
+
+function countfiles()
+{
+local ADD=$DIR
+
+if [ -n $ADD ]; then 
+	filelist=$(ls -a)
+	for item in $filelist ; do
+		case $item in
+			.) continue
+			;;
+			..) continue
+			;;
+		esac
+		if [ -f $item ]; then
+			count=$[ $count + 1 ]
+		else
+		#	echo 'not a file, cd the directory'. $item
+			# then we cd into the directory and do the same thing
+			\cd $item
+		#	echo 'current addr is '.$(pwd)
+		        DIR=$item
+		        countfiles
+			cd ..
+		fi
+	done
+else
+	echo 'not a directory'
+fi
+
+}
+
+countfiles
+echo $count' files of total'
