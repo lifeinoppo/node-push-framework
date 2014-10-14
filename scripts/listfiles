@@ -1,0 +1,37 @@
+# this bash file is for recursively listing files in current directory
+#!/bin/bash
+
+depth=0;
+
+function listfiles()
+{
+
+	local EXTRA=$1;
+	local ADD=$(pwd);
+	local depth=0;
+
+	filelist=$(ls -a)
+	# just list depth-1 files
+	for item in $filelist; do
+		if [ $item != '.' ]; then
+			if [ $item != '..' ]; then
+				if [ -f $item ]; then
+					echo $EXTRA$item
+					# echo -e '\n'	
+				else
+					if [ -n $item ];  then 	
+					   echo $item
+					   \cd $item
+					   listfiles $EXTRA'--'
+					   \cd ..
+					fi	
+				fi
+			else
+				continue
+			fi
+		fi
+	done
+
+}
+
+listfiles ''
